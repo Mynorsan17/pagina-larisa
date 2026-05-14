@@ -1,0 +1,101 @@
+---
+import { heroSlides, heroSlideInterval } from "../../data/heroSlides.js";
+import { site } from "../../data/site.js";
+---
+
+<div
+  id="hero-carousel"
+  class="relative w-full h-full rounded-3xl overflow-hidden border border-white/10 shadow-2xl shadow-blue-brand/20 bg-navy-900 lg:rounded-none lg:border-0 lg:shadow-none"
+  data-interval={heroSlideInterval}
+>
+  <div class="carousel-track absolute inset-0">
+    {heroSlides.map((slide, i) => (
+      <div
+        class={`carousel-slide absolute inset-0 transition-opacity duration-1000 ${i === 0 ? "opacity-100" : "opacity-0"}`}
+        data-index={i}
+      >
+        <img
+          src={slide.image}
+          alt={slide.title}
+          class="w-full h-full object-cover"
+          loading={i === 0 ? "eager" : "lazy"}
+          onerror={`this.style.display='none'; this.nextElementSibling.style.display='flex'`}
+        />
+        <div class="absolute inset-0 hidden flex-col items-center justify-center bg-gradient-to-br from-navy-900 to-navy-950 p-8">
+          <img
+            src={site.logo.hero}
+            alt={site.name}
+            class="w-3/4 h-auto object-contain opacity-70"
+          />
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-navy-950/20 to-transparent lg:bg-gradient-to-l lg:from-navy-950/40 lg:via-transparent lg:to-transparent"></div>
+        <div class="absolute bottom-0 left-0 right-0 p-6 lg:bottom-auto lg:left-auto lg:top-32 lg:right-16 lg:max-w-[28%] lg:text-right">
+          <p class="text-sky-brand text-xs font-semibold tracking-[0.2em] uppercase mb-1">
+            {slide.subtitle}
+          </p>
+          <h3 class="text-white text-xl lg:text-2xl font-bold">
+            {slide.title}
+          </h3>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div class="absolute bottom-4 right-4 flex gap-2 z-10">
+    {heroSlides.map((_, i) => (
+      <button
+        class={`carousel-dot w-2 h-2 rounded-full transition-all duration-300 ${i === 0 ? "bg-sky-brand w-6" : "bg-white/40 hover:bg-white/60"}`}
+        data-index={i}
+        aria-label={`Slide ${i + 1}`}
+      ></button>
+    ))}
+  </div>
+</div>
+
+<script>
+  const carousel = document.getElementById("hero-carousel");
+  if (carousel) {
+    const interval = parseInt(carousel.dataset.interval || "4000", 10);
+    const slides = carousel.querySelectorAll<HTMLElement>(".carousel-slide");
+    const dots = carousel.querySelectorAll<HTMLElement>(".carousel-dot");
+    let current = 0;
+    let timer: number;
+
+    const goTo = (index: number) => {
+      slides[current].classList.remove("opacity-100");
+      slides[current].classList.add("opacity-0");
+      dots[current].classList.remove("bg-sky-brand", "w-6");
+      dots[current].classList.add("bg-white/40", "hover:bg-white/60");
+
+      current = (index + slides.length) % slides.length;
+
+      slides[current].classList.remove("opacity-0");
+      slides[current].classList.add("opacity-100");
+      dots[current].classList.add("bg-sky-brand", "w-6");
+      dots[current].classList.remove("bg-white/40", "hover:bg-white/60");
+    };
+
+    const next = () => goTo(current + 1);
+
+    const start = () => {
+      timer = window.setInterval(next, interval);
+    };
+
+    const stop = () => {
+      window.clearInterval(timer);
+    };
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener("click", () => {
+        stop();
+        goTo(i);
+        start();
+      });
+    });
+
+    carousel.addEventListener("mouseenter", stop);
+    carousel.addEventListener("mouseleave", start);
+
+    start();
+  }
+</script>

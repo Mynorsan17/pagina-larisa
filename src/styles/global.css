@@ -1,0 +1,175 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy-950: #334155;
+  --color-navy-900: #0F172A;
+  --color-navy-800: #1E293B;
+  --color-blue-brand: #2563EB;
+  --color-blue-dark: #1D4ED8;
+  --color-blue-light: #3B82F6;
+  --color-sky-brand: #38BDF8;
+  --color-sky-light: #7DD3FC;
+  --color-text-light: #E2E8F0;
+  --color-text-muted: #94A3B8;
+
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+/* ============================================
+   TEMA: variables que detectan light/dark del SO
+   ============================================ */
+:root {
+  /* LIGHT mode por defecto */
+  --c-page-bg: #f8fafc;
+  --c-wrapper-1: #f8fafc;
+  --c-wrapper-2: #e0f2fe;
+  --c-wrapper-3: #eff6ff;
+  --c-fade: #f8fafc;
+
+  --c-heading: #0d1b4b;
+  --c-body-text: #475569;
+  --c-muted-text: #64748b;
+
+  --c-card-bg: #ffffff;
+  --c-card-bg-subtle: #f1f5f9;
+  --c-card-border: rgba(226, 232, 240, 0.8);
+  --c-card-border-hover: rgba(147, 197, 253, 0.8);
+
+  --c-accent-primary: #2563eb;
+  --c-accent-bright: #0284c7;
+
+  --c-divider: rgba(13, 27, 75, 0.08);
+  --c-curve: rgba(13, 27, 75, 0.3);
+
+  --c-navbar-bg: rgba(248, 250, 252, 0.85);
+  --c-navbar-border: rgba(13, 27, 75, 0.08);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --c-page-bg: #334155;
+    --c-wrapper-1: #1e293b;
+    --c-wrapper-2: #334155;
+    --c-wrapper-3: #475569;
+    --c-fade: #334155;
+
+    --c-heading: #ffffff;
+    --c-body-text: #cbd5e1;
+    --c-muted-text: #94a3b8;
+
+    --c-card-bg: rgba(255, 255, 255, 0.04);
+    --c-card-bg-subtle: rgba(255, 255, 255, 0.06);
+    --c-card-border: rgba(255, 255, 255, 0.08);
+    --c-card-border-hover: rgba(56, 189, 248, 0.3);
+
+    --c-accent-primary: #38bdf8;
+    --c-accent-bright: #38bdf8;
+
+    --c-divider: rgba(255, 255, 255, 0.06);
+    --c-curve: rgba(255, 255, 255, 0.25);
+
+    --c-navbar-bg: rgba(15, 23, 42, 0.8);
+    --c-navbar-border: rgba(255, 255, 255, 0.06);
+  }
+}
+
+#main-nav.nav-scrolled {
+  background-color: var(--c-navbar-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom-color: var(--c-navbar-border);
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
+
+/* Navbar en pantalla de inicio (sin scroll): texto auto-adapta
+   al fondo mediante mix-blend-mode. Funciona tanto sobre el
+   carrusel oscuro como sobre el fondo claro de la página. */
+#main-nav:not(.nav-scrolled) .nav-link {
+  color: #ffffff;
+  mix-blend-mode: difference;
+}
+
+#main-nav:not(.nav-scrolled) .menu-line {
+  background-color: #ffffff;
+  mix-blend-mode: difference;
+}
+
+/* Hover: cambia el texto a azul de marca, sin fondo, sin blend */
+#main-nav .nav-link:hover {
+  color: #2563EB;
+  mix-blend-mode: normal;
+  background-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--c-page-bg);
+  color: var(--c-body-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+::selection {
+  background-color: rgba(37, 99, 235, 0.4);
+  color: #E2E8F0;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0F172A;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1E293B;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2563EB;
+}
+
+/* ============================================
+   Animaciones de scroll (reveal on intersect)
+   ============================================ */
+[data-animate] {
+  opacity: 0;
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+[data-animate="fade-up"]    { transform: translateY(28px); }
+[data-animate="fade-down"]  { transform: translateY(-28px); }
+[data-animate="fade-left"]  { transform: translateX(-36px); }
+[data-animate="fade-right"] { transform: translateX(36px); }
+[data-animate="fade-in"]    { transform: none; }
+[data-animate="scale-in"]   { transform: scale(0.94); }
+
+[data-animate].is-visible {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+}
+
+[data-animate-delay="100"] { transition-delay: 100ms; }
+[data-animate-delay="200"] { transition-delay: 200ms; }
+[data-animate-delay="300"] { transition-delay: 300ms; }
+[data-animate-delay="400"] { transition-delay: 400ms; }
+[data-animate-delay="500"] { transition-delay: 500ms; }
+[data-animate-delay="600"] { transition-delay: 600ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-animate] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

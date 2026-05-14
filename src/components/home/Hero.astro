@@ -1,0 +1,119 @@
+---
+import { site } from "../../data/site.js";
+import HeroCarousel from "../common/HeroCarousel.astro";
+
+const whatsappUrl = `https://wa.me/${site.whatsapp.number}?text=${encodeURIComponent(site.whatsapp.message)}`;
+---
+
+<section id="inicio" class="relative min-h-screen overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-1/4 -left-32 w-96 h-96 bg-blue-brand/20 rounded-full blur-[120px]"></div>
+    <div class="absolute bottom-1/4 -right-32 w-80 h-80 bg-sky-brand/15 rounded-full blur-[100px]"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-blue-brand/5 rounded-full blur-[80px]"></div>
+  </div>
+
+  <svg class="hidden lg:block absolute inset-0 w-full h-full pointer-events-none z-[5]" preserveAspectRatio="none" viewBox="0 0 100 100">
+    <defs>
+      <clipPath id="hero-curve-clip" clipPathUnits="objectBoundingBox">
+        <path d="M 0.4,0 Q 0.4,1 0.95,1 L 1,1 L 1,0 Z" />
+      </clipPath>
+    </defs>
+    <path
+      d="M 40 0 Q 40 100 95 100"
+      style="stroke: var(--c-curve);"
+      stroke-width="2"
+      fill="none"
+      vector-effect="non-scaling-stroke"
+    />
+  </svg>
+
+  <div class="hero-carousel-area">
+    <HeroCarousel />
+  </div>
+
+  <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20 w-full lg:min-h-screen lg:flex lg:items-center">
+    <div class="w-full lg:max-w-[42%]">
+      <p class="text-sky-brand text-sm font-semibold tracking-[0.25em] uppercase mb-4">
+        Productos Médicos
+      </p>
+
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-[var(--c-heading)] leading-tight mb-6">
+        Tecnología médica<br />
+        <span class="bg-gradient-to-r from-blue-brand to-sky-brand bg-clip-text text-transparent">
+          de confianza
+        </span>
+      </h1>
+
+      <p class="text-[var(--c-body-text)] text-lg leading-relaxed max-w-lg mb-8">
+        {site.description}
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 mb-12">
+        <a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 bg-green-600 hover:bg-green-500 text-white font-semibold px-7 py-3.5 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-green-600/25 text-sm"
+        >
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          WhatsApp
+        </a>
+        <a
+          href="#servicios"
+          class="inline-flex items-center justify-center gap-2 border border-[var(--c-card-border)] hover:border-blue-brand/50 text-[var(--c-heading)] font-semibold px-7 py-3.5 rounded-xl transition-all duration-200 hover:bg-[var(--c-card-bg-subtle)] text-sm"
+        >
+          Ver servicios
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </a>
+      </div>
+
+      <div class="flex gap-10 pt-8 border-t border-[var(--c-divider)]">
+        {[
+          { value: "+500", label: "Productos" },
+          { value: "+10", label: "Años" },
+          { value: "+1000", label: "Clientes" },
+        ].map((stat) => (
+          <div>
+            <p class="text-2xl font-bold text-[var(--c-heading)]">{stat.value}</p>
+            <p class="text-[var(--c-muted-text)] text-xs tracking-wider uppercase mt-1">{stat.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-20">
+    <a href="#nosotros" class="text-text-muted/40 hover:text-sky-brand transition-colors">
+      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      </svg>
+    </a>
+  </div>
+</section>
+
+<style>
+  .hero-carousel-area {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: 26rem;
+    aspect-ratio: 1;
+    margin: 8rem auto 2rem;
+  }
+
+  @media (min-width: 1024px) {
+    .hero-carousel-area {
+      position: absolute;
+      inset: 0;
+      width: auto;
+      max-width: none;
+      aspect-ratio: auto;
+      margin: 0;
+      clip-path: url(#hero-curve-clip);
+    }
+  }
+</style>
