@@ -16,9 +16,10 @@ export const site = {
     linkedin: "#"
   },
   logo: {
-    navbar: "/images/logo/Imagotipo Corp Larisa SA-02.png", // vertical, celeste claro (fondo oscuro)
-    hero: "/images/logo/Imagotipo Corp Larisa SA-05.png", // vertical, celeste claro (fondo oscuro)
-    footer: "/images/logo/Imagotipo Corp Larisa SA-05.png", // vertical, claro (fondo oscuro)
-    icon: "/images/logo/Imagotipo Corp Larisa SA-17.png", // solo icono
+    navbar: "/images/logo/Imagotipo Corp Larisa SA-02.png",      // navbar en modo CLARO
+    navbarDark: "/images/logo/Imagotipo Corp Larisa SA-10.png",  // navbar en modo OSCURO
+    hero: "/images/logo/Imagotipo Corp Larisa SA-05.png",        // vertical, celeste claro (fondo oscuro)
+    footer: "/images/logo/Imagotipo Corp Larisa SA-05.png",      // vertical, claro (fondo oscuro)
+    icon: "/images/logo/Imagotipo Corp Larisa SA-17.png",        // solo icono
   },
 };
