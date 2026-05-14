@@ -9,16 +9,14 @@ import { site } from "../../data/site.js";
 >
   <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
     <a href="#inicio" class="flex items-center gap-3 shrink-0">
-      <img
-        src={site.logo.navbar}
-        alt={site.name}
-        class="navbar-logo-light h-16 w-auto object-contain drop-shadow-lg"
-      />
-      <img
-        src={site.logo.navbarDark}
-        alt={site.name}
-        class="navbar-logo-dark h-16 w-auto object-contain drop-shadow-lg"
-      />
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcset={site.logo.navbarDark} />
+        <img
+          src={site.logo.navbar}
+          alt={site.name}
+          class="h-16 w-auto object-contain drop-shadow-lg"
+        />
+      </picture>
     </a>
 
     <ul class="hidden lg:flex items-center gap-1">

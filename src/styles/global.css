@@ -103,22 +103,6 @@
   background-color: transparent;
 }
 
-/* Logo del navbar: muestra una imagen u otra según el modo */
-img.navbar-logo-dark {
-  display: none !important;
-}
-img.navbar-logo-light {
-  display: block !important;
-}
-
-@media (prefers-color-scheme: dark) {
-  img.navbar-logo-light {
-    display: none !important;
-  }
-  img.navbar-logo-dark {
-    display: block !important;
-  }
-}
 
 html,
 body {
