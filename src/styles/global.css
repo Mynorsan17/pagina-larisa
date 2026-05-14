@@ -103,6 +103,11 @@
   background-color: transparent;
 }
 
+html,
+body {
+  overflow-x: hidden;
+}
+
 html {
   scroll-behavior: smooth;
 }
