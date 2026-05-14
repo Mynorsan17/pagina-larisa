@@ -9,14 +9,14 @@ import { site } from "../../data/site.js";
 >
   <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
     <a href="#inicio" class="flex items-center gap-3 shrink-0">
-      <picture>
-        <source media="(prefers-color-scheme: dark)" srcset={site.logo.navbarDark} />
-        <img
-          src={site.logo.navbar}
-          alt={site.name}
-          class="h-16 w-auto object-contain drop-shadow-lg"
-        />
-      </picture>
+      <img
+        id="navbar-logo"
+        src={site.logo.navbar}
+        data-light={site.logo.navbar}
+        data-dark={site.logo.navbarDark}
+        alt={site.name}
+        class="h-16 w-auto object-contain drop-shadow-lg"
+      />
     </a>
 
     <ul class="hidden lg:flex items-center gap-1">
@@ -94,6 +94,16 @@ import { site } from "../../data/site.js";
       menu?.classList.add("hidden");
     });
   });
+
+  const logoImg = document.getElementById("navbar-logo") as HTMLImageElement | null;
+  if (logoImg) {
+    const lightSrc = logoImg.dataset.light!;
+    const darkSrc = logoImg.dataset.dark!;
+    const applyLogo = (isDark: boolean) => { logoImg.src = isDark ? darkSrc : lightSrc; };
+    const mq = window.matchMedia("(prefers-color-scheme: dark)");
+    applyLogo(mq.matches);
+    mq.addEventListener("change", (e) => applyLogo(e.matches));
+  }
 
   window.addEventListener("scroll", () => {
     if (window.scrollY > 50) {
