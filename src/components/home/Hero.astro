@@ -31,24 +31,24 @@ const whatsappUrl = `https://wa.me/${site.whatsapp.number}?text=${encodeURICompo
     <HeroCarousel />
   </div>
 
-  <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20 w-full lg:min-h-screen lg:flex lg:items-center">
+  <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12 sm:pt-24 sm:pb-16 lg:pt-32 lg:pb-20 w-full lg:min-h-screen lg:flex lg:items-center">
     <div class="w-full lg:max-w-[42%]">
       <p class="text-sky-brand text-sm font-semibold tracking-[0.25em] uppercase mb-4">
         Productos Médicos
       </p>
 
-      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-[var(--c-heading)] leading-tight mb-6">
+      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-[var(--c-heading)] leading-tight mb-5 sm:mb-6">
         Tecnología médica<br />
         <span class="bg-gradient-to-r from-blue-brand to-sky-brand bg-clip-text text-transparent">
           de confianza
         </span>
       </h1>
 
-      <p class="text-[var(--c-body-text)] text-lg leading-relaxed max-w-lg mb-8">
+      <p class="text-[var(--c-body-text)] text-base sm:text-lg leading-relaxed max-w-lg mb-6 sm:mb-8">
         {site.description}
       </p>
 
-      <div class="flex flex-col sm:flex-row gap-4 mb-12">
+      <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8 sm:mb-12">
         <a
           href={whatsappUrl}
           target="_blank"
@@ -71,14 +71,14 @@ const whatsappUrl = `https://wa.me/${site.whatsapp.number}?text=${encodeURICompo
         </a>
       </div>
 
-      <div class="flex gap-10 pt-8 border-t border-[var(--c-divider)]">
+      <div class="flex flex-wrap gap-x-6 gap-y-4 sm:gap-10 pt-6 sm:pt-8 border-t border-[var(--c-divider)]">
         {[
           { value: "+500", label: "Productos" },
           { value: "+10", label: "Años" },
           { value: "+1000", label: "Clientes" },
         ].map((stat) => (
           <div>
-            <p class="text-2xl font-bold text-[var(--c-heading)]">{stat.value}</p>
+            <p class="text-xl sm:text-2xl font-bold text-[var(--c-heading)]">{stat.value}</p>
             <p class="text-[var(--c-muted-text)] text-xs tracking-wider uppercase mt-1">{stat.label}</p>
           </div>
         ))}
@@ -99,10 +99,18 @@ const whatsappUrl = `https://wa.me/${site.whatsapp.number}?text=${encodeURICompo
   .hero-carousel-area {
     position: relative;
     z-index: 3;
-    width: 100%;
-    max-width: 26rem;
+    width: 90%;
+    max-width: 22rem;
     aspect-ratio: 1;
-    margin: 8rem auto 2rem;
+    margin: 5.5rem auto 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .hero-carousel-area {
+      width: 100%;
+      max-width: 26rem;
+      margin: 7rem auto 2rem;
+    }
   }
 
   @media (min-width: 1024px) {
