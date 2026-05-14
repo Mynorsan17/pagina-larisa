@@ -104,16 +104,19 @@
 }
 
 /* Logo del navbar: muestra una imagen u otra según el modo */
-.navbar-logo-dark {
-  display: none;
+img.navbar-logo-dark {
+  display: none !important;
+}
+img.navbar-logo-light {
+  display: block !important;
 }
 
 @media (prefers-color-scheme: dark) {
-  .navbar-logo-light {
-    display: none;
+  img.navbar-logo-light {
+    display: none !important;
   }
-  .navbar-logo-dark {
-    display: block;
+  img.navbar-logo-dark {
+    display: block !important;
   }
 }
 
