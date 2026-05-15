@@ -83,22 +83,25 @@
     0 4px 6px -4px rgba(0, 0, 0, 0.1);
 }
 
-/* Navbar en pantalla de inicio (sin scroll): texto auto-adapta
-   al fondo mediante mix-blend-mode. Funciona tanto sobre el
-   carrusel oscuro como sobre el fondo claro de la página. */
+/* Navbar en pantalla de inicio (sin scroll): letras blancas con
+   sombra oscura para legibilidad sobre cualquier fondo */
 #main-nav:not(.nav-scrolled) .nav-link {
   color: #ffffff;
-  mix-blend-mode: difference;
+  mix-blend-mode: normal;
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.8),
+    0 2px 8px rgba(0, 0, 0, 0.6);
 }
 
 #main-nav:not(.nav-scrolled) .menu-line {
   background-color: var(--c-heading);
 }
 
-/* Hover: cambia el texto a azul de marca, sin fondo, sin blend */
+/* Hover: azul de marca, sin sombra */
 #main-nav .nav-link:hover {
   color: #2563EB;
   mix-blend-mode: normal;
+  text-shadow: none;
   background-color: transparent;
 }
 
