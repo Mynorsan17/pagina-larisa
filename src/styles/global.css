@@ -92,8 +92,7 @@
 }
 
 #main-nav:not(.nav-scrolled) .menu-line {
-  background-color: #ffffff;
-  mix-blend-mode: difference;
+  background-color: var(--c-heading);
 }
 
 /* Hover: cambia el texto a azul de marca, sin fondo, sin blend */
