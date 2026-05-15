@@ -25,6 +25,8 @@ import { site } from "../../data/site.js";
           <a
             href={link.href}
             class="nav-link px-4 py-2 text-sm font-medium text-[var(--c-body-text)] rounded-lg transition-colors duration-200"
+            target={link.external ? "_blank" : null}
+            rel={link.external ? "noopener noreferrer" : null}
           >
             {link.label}
           </a>
@@ -62,6 +64,8 @@ import { site } from "../../data/site.js";
             <a
               href={link.href}
               class="nav-link mobile-link block text-[var(--c-body-text)] font-medium text-base py-3 px-4 rounded-lg transition-colors duration-200"
+              target={link.external ? "_blank" : null}
+              rel={link.external ? "noopener noreferrer" : null}
             >
               {link.label}
             </a>
@@ -79,9 +83,9 @@ import { site } from "../../data/site.js";
 </header>
 
 <script>
-  const nav = document.getElementById("main-nav");
+  const nav    = document.getElementById("main-nav");
   const toggle = document.getElementById("menu-toggle");
-  const menu = document.getElementById("mobile-menu");
+  const menu   = document.getElementById("mobile-menu");
 
   toggle?.addEventListener("click", () => {
     toggle.classList.toggle("open");
@@ -98,7 +102,7 @@ import { site } from "../../data/site.js";
   const logoImg = document.getElementById("navbar-logo") as HTMLImageElement | null;
   if (logoImg) {
     const lightSrc = logoImg.dataset.light!;
-    const darkSrc = logoImg.dataset.dark!;
+    const darkSrc  = logoImg.dataset.dark!;
     const applyLogo = (isDark: boolean) => { logoImg.src = isDark ? darkSrc : lightSrc; };
     const mq = window.matchMedia("(prefers-color-scheme: dark)");
     applyLogo(mq.matches);
